@@ -9,13 +9,16 @@ import java.util.*;
  *
  * @author ralph
  */
-public class PasswordValidator extends UnoOnline{
+public class PasswordValidator {
     
-    String password;
-    Boolean validPassword = true;
-    Scanner sc = new Scanner(System.in);
-
-    public void setPassword(String password) {
+    private User users[] = new User[100];
+    public void validate(){
+    int userCount=0;//keep track of number of users for array
+        Scanner sc = new Scanner(System.in);
+        System.out.println("please enter your desired user name:");
+        String userName = sc.nextLine();
+        boolean validPassword=false;
+        String password="";
         while(!validPassword)
         {
             System.out.println("Passwords must have at least 8 characters");
@@ -37,11 +40,14 @@ public class PasswordValidator extends UnoOnline{
             {
                 validPassword=true;
             }
-        this.password = password;
+        }//loop only ends when password is valid so now we create the User
+        
+        User newUser = new User(userName, password);
+        users[userCount] = newUser;//add the new user to the user list
+        userCount++;
+        System.out.println("New User Added");
+        System.out.println("UserName: " + userName);
+        System.out.println("Password: just kidding can't show password");  
     }
-    
-    public String getPassword() {
-        return password;
-    }
-    
-}
+ }
+
